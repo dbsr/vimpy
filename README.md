@@ -50,10 +50,10 @@ third-party module can be installed using pip or downloaded from
 pypi: https://pypi.python.org/pypi/pyflakes.
 
 ### 5. Todo                                                        
-    1. Add option to check for and remove redundant import lines
+1. Add option to check for and remove redundant import lines
 
 ### 6. Contact
 
-Plugin github page @ http://github.com/dbsr/vim-impy
+Plugin github page @ http://github.com/dbsr/vimpy
 
 You can contact me at dydrmntion -AT- gmail -DOT- com.
