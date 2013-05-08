@@ -120,6 +120,9 @@ class VimBuffer(object):
 
             section = _module.section
 
+        logger.debug("New import: {0} {1} => type: {2} section: {3}.".format(
+                     module, submodule, import_type, section))
+
         # Lambda recurses until key_value tuples exhausted, then returns results
         get_lmbda = lambda lines, key_vals: get_lmbda(
             [l for l in lines if l.get(key_vals[0][0]) == key_vals[0][1]],
@@ -189,18 +192,26 @@ class VimBuffer(object):
 
         self.insert_line(line_n, iline)
 
-        if not [l for l in self._lines[line_n:line_n + 1] if l['type'] is
-                WHITE_LINE or l['type'] is IMPORT_LINE and l['section'] == section]:
-            # Add whiteline below new import line
+        # Add whiteline below new import line
+        next_line = self._lines[line_n + 1]
+        if (next_line['type'] is not WHITE_LINE or next_line['type'] is IMPORT_LINE and
+                next_line.get('section') != section):
+
+            logger.debug('end import section @ {0}.'.format(line_n + 1))
+
             self.insert_line(line_n + 1, '')
 
         if sorted([l['n'] for l in self.import_lines] + [line_n])[-1] == line_n:
             # Is last import line, check for second whiteline
-            if not self[line_n + 1]['type'] is WHITE_LINE:
+            if not self[line_n + 2]['type'] is WHITE_LINE:
+
+                logger.debug("End import sections => line_n: {0}.".format(line_n + 2))
 
                 self.insert_line(line_n + 2, '')
 
     def insert_line(self, line_n, line):
+
+        logger.debug("INSERT: {0!r} @ {1}.".format(line, line_n))
 
         cur_pos = vim.current.window.cursor
 
