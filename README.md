@@ -39,8 +39,9 @@ a relative import by itself.
 
 ### 3. Commands                                               
                                                     
-    :VimpyCheckLine
 Checks the line at the cursor's position for new imports.
+    
+    \:VimpyCheckLine
 
 ### 4. Requirements
 
