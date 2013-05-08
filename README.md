@@ -1,4 +1,4 @@
-##        Vimpy ~ auto-import plugin for Python
+##        Vimpy ~ Python auto-import plugin for Vim
 
 1. Description                                          
 2. Options                                              

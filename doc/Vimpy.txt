@@ -1,6 +1,6 @@
 *vimpy.txt*    For Vim version 7.3     Last change: 2013 May 13
 
-        Vimpy ~ auto-import plugin for Python
+        Vimpy ~ Python auto-import helper for Vim
 
 vimpy
 
