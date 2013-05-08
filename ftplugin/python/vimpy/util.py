@@ -20,15 +20,9 @@ class ModuleImporter:
 
     def __init__(self, module_name):
 
-        self.module_name = module_name.strip()
+        self._module_name = module_name
 
-        if not re.match(r'[\w._]+$', self.module_name):
-
-            self.module_name = None
-
-        elif module_name.rfind('.') > -1:
-
-            self.module_name = module_name.split('.')[0]
+        self.module_name = module_name.split('.')[0]
 
         self._sub_modules = {}
 
