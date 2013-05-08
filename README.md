@@ -39,20 +39,20 @@ a relative import by itself.
 
 ### 3. Commands                                               
                                                     
-:VimpyCheckLine
-    Check the line at the cursor's position for new imports.
+    :VimpyCheckLine
+Checks the line at the cursor's position for new imports.
 
 ### 4. Requirements
 
 Vimpy relies on 'pyflakes' for its missing import decection magic. This
 third-party module can be installed using pip or downloaded from
-pypi: 'https://pypi.python.org/pypi/pyflakes').
+pypi: https://pypi.python.org/pypi/pyflakes.
 
 ### 5. Todo                                                        
     1. Add option to check for and remove redundant import lines
 
 ### 6. Contact
 
-Plugin github page @ 'http://github.com/dbsr/vim-impy'.
+Plugin github page @ http://github.com/dbsr/vim-impy
 
 You can contact me at dydrmntion -AT- gmail -DOT- com.
