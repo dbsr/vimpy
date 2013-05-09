@@ -106,8 +106,12 @@ def _resolve_relative(pos_import, pos_modules):
 
         logger.debug(mapping)
 
+        if mapping[0] == module:
+
+            module = '.'.join(mapping)
+
         return {
-            'module': '.'.join(mapping),
+            'module': module,
             'submodule': pos_import
         }
 
