@@ -12,7 +12,7 @@ if !exists('g:vimpy_prompt_resolve')
 endif
 
 " Debug log
-let s:vimpy_debug_log = 1
+let s:vimpy_debug_log = 0
 
 " Make sure we have pyflakes
 let s:have_flake = 1
