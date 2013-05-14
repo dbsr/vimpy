@@ -4,8 +4,7 @@
 2. Options                                              
 3. Commands                                             
 4. Requirements                                         
-5. Todo                                                 
-6. Contact                                              
+5. Contact                                              
 
 
 ### 1. Description                                         
@@ -30,7 +29,7 @@ Vimpy follows the PEP8 guidelines. Imports are grouped in the following order:
 stdlib imports, third-party imports and local imports with a blank line 
 between each section and two blank lines after the last importline.
 
-### 2.. Options                                                 
+### 2. Options                                                 
 
 This option controls whether impy will ask for help when it cannot resolve
 a relative import by itself.
