@@ -209,6 +209,46 @@ class VimBuffer(object):
 
                 self.insert_line(line_n + 2, '')
 
+    def remove_import(self, module):
+
+        for line in self.import_lines:
+
+            if module in line['module'] or module in line.get('sub_modules', []):
+
+                logger.debug(repr(line))
+
+                if line['module'] == module:
+
+                    self.remove_line(line['n'])
+
+                else:
+
+                    try:
+
+                        line['sub_modules'].remove(module)
+
+                    except ValueError:
+
+                        logger.warning('Could not remove submodule: {0!r} from '
+                                       'import line: {1!r}.'.format(module, self[line['n']]))
+
+                    else:
+
+                        if not line['sub_modules']:
+
+                            self.remove_line(line['n'])
+
+                        else:
+
+                            vim.current.buffer[line['n']] = "from {0} import {1}".format(
+                                line['module'], ', '.join(line['sub_modules']))
+
+    def remove_line(self, line_n):
+
+        del vim.current.buffer[line_n]
+
+        self._read_buffer()
+
     def insert_line(self, line_n, line):
 
         logger.debug("INSERT: {0!r} @ {1}.".format(line, line_n))
