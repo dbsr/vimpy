@@ -29,7 +29,7 @@ def do_vimpy(line_n):
             # No context found
             context = mod
 
-        if context.rfind('.') != '-1' and _is_module(mod):
+        if context.rfind('.') != -1 and _is_module(mod):
             # of type: os.path.isdir / re.search, eg. more than 1 word
             vb.add_import(mod)
 
