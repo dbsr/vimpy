@@ -37,11 +37,15 @@ a relative import by itself.
 
     let g:vimpy_prompt_resolve = 1
 
+If this option is set vimpy will remove import lines for unused modules.
+
+    let g:vimpy_remove_unused = 1
+
 ### 3. Commands                                               
                                                     
 Checks the line at the cursor's position for new imports.
     
-    \:VimpyCheckLine
+    :VimpyCheckLine
 
 ### 4. Requirements
 
@@ -49,10 +53,7 @@ Vimpy relies on 'pyflakes' for its missing import decection magic. This
 third-party module can be installed using pip or downloaded from
 pypi: https://pypi.python.org/pypi/pyflakes.
 
-### 5. Todo                                                        
-1. Add option to check for and remove redundant import lines
-
-### 6. Contact
+### 5. Contact
 
 Plugin github page @ http://github.com/dbsr/vimpy
 

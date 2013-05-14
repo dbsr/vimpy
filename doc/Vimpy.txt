@@ -1,4 +1,4 @@
-*vimpy.txt*    For Vim version 7.3     Last change: 2013 May 13
+*vimpy.txt*    For Vim version 7.3     Last change: 2013 May 14
 
         Vimpy ~ Python auto-import helper for Vim
 
@@ -8,8 +8,7 @@ vimpy
 2. Options                                              |vimpy-options|
 3. Commands                                             |vimpy-commands|
 4. Requirements                                         |vimpy-requirements|
-5. Todo                                                 |vimpy-todo|
-6. Contact                                              |vimpy-contact|
+5. Contact                                              |vimpy-contact|
 
 
 This plugin needs vim to be compiled with the |+python| option.
@@ -47,6 +46,13 @@ a relative import by itself.
     let g:vimpy_prompt_resolve = 1
 <
 
+                                                 *'g:vimpy_remove_unused'
+If this option is set vimpy will remove import lines for unused modules.
+
+    let g:vimpy_remove_unused = 1
+<
+
+
 ==============================================================================
 3. Commands                                                  |vimpy-commands|
                                                     
@@ -62,11 +68,7 @@ third-party module can be installed using pip or downloaded from
 pypi: 'https://pypi.python.org/pypi/pyflakes').
 
 ==============================================================================
-5. Todo                                                        |vimpy-todo|
-    1. Add option to check for and remove redundant import lines
-
-==============================================================================
-6. Contact
+5. Contact
 
 Plugin github page @ 'http://github.com/dbsr/vimpy'.
 
