@@ -19,7 +19,17 @@ def do_vimpy(line_n):
 
     line = vb[line_n - 1]
 
-    for mod in _flake_line(line_n):
+    flake_errors = _flake_line(line_n)
+
+    vimpy_prompt_resolve = bool(int(vim.eval('g:vimpy_prompt_resolve')))
+
+    vimpy_remove_unused = bool(int(vim.eval('g:vimpy_remove_unused')))
+
+    if not flake_errors:
+
+        return
+
+    for mod in flake_errors['undefined']:
 
         try:
 
@@ -37,7 +47,7 @@ def do_vimpy(line_n):
 
         relative_import = _resolve_relative(mod, [l['module'] for l in vb.import_lines])
 
-        if not relative_import:
+        if not relative_import and vimpy_prompt_resolve:
 
             relative_import = ask_module(mod)
 
@@ -45,10 +55,18 @@ def do_vimpy(line_n):
 
             vb.add_import(**relative_import)
 
+    if vimpy_remove_unused:
+
+        for mod in flake_errors['unused']:
+
+            vb.remove_import(mod)
+
 
 def _flake_line(line_n):
 
-    W802 = 'undefined'
+    undefined = 'undefined'
+
+    unused = 'unused'
 
     warnings = StringIO()
 
@@ -62,12 +80,26 @@ def _flake_line(line_n):
 
         warnings.seek(0)
 
-        for line, module in [(int(x.split(':')[1]), x.split()[-1].strip('\n|\''))
-                             for x in warnings.readlines() if W802 in x]:
+        errors = {
+            undefined: [],
+            unused: []
+        }
 
-            if line == line_n:
+        for line, error in [(int(x.split(':')[1]), x) for x in warnings.readlines()]:
 
-                yield module
+            if undefined in error and line == line_n:
+
+                module = error.split()[-1].strip("\n|'")
+
+                errors[undefined].append(module)
+
+            elif unused in error:
+
+                module = error.split()[1].strip(" |'")
+
+                errors[unused].append(module)
+
+        return errors
 
 
 def _is_module(pos_import):
