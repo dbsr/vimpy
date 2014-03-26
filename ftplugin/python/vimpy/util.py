@@ -4,10 +4,11 @@
 import os
 import imp
 import re
-import importlib
 import sys
-import sysconfig
 import types
+import importlib
+
+from distutils import sysconfig
 
 
 class ModuleImporter:
@@ -54,9 +55,9 @@ class ModuleImporter:
     @property
     def section(self):
 
-        stdlib_path = [sysconfig.get_path('stdlib')]
+        stdlib_path = [sysconfig.get_python_lib('stdlib')]
 
-        site_path = sysconfig.get_path('purelib')
+        site_path = sysconfig.get_python_lib('purelib')
 
         # some stdlib modules have different paths inside a virtualenv
         if hasattr(sys, 'real_prefix'):
