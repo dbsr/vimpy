@@ -67,6 +67,7 @@ def _flake_line(line_n):
     undefined = 'undefined'
 
     unused = 'unused'
+    redefinition = 'redefinition'
 
     warnings = StringIO()
 
@@ -93,7 +94,7 @@ def _flake_line(line_n):
 
                 errors[undefined].append(module)
 
-            elif unused in error:
+            elif unused in error and redefinition not in error:
 
                 module = error.split()[1].strip(" |'")
 
